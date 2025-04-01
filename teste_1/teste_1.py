@@ -34,14 +34,14 @@ def scrape(regex_pattern):
         else:
             print(f"File {os.path.basename(link['href'])} already exists.")
 
-def zip_files(output_dir):
+def zip_files(output_dir, zip_name=ZIP_NAME):
     folder = pathlib.Path(output_dir)
-    if not os.path.isfile(ZIP_NAME):
-        with zipfile.ZipFile(ZIP_NAME, "w") as zipf:
+    if not os.path.isfile(zip_name):
+        with zipfile.ZipFile(zip_name, "w") as zipf:
             for file in folder.iterdir():
                 zipf.write(file, arcname=file.name)
     else:
-        print(f"File {ZIP_NAME} already exists.")
+        print(f"File {zip_name} already exists.")
                 
 def delete_temp(folder_name):
     #for deleting the temporary files
@@ -53,6 +53,6 @@ def delete_temp(folder_name):
 if __name__ == "__main__":
     print("Starting the scraping process...")
     scrape(r"(Anexo_I|Anexo_II).+(\.pdf)")
-    zip_files(OUTPUT_DIR)
+    zip_files(OUTPUT_DIR, ZIP_NAME)
     print(f"Files downloaded and zipped into {ZIP_NAME}")
     delete_temp(OUTPUT_DIR)

@@ -39,6 +39,7 @@ def join_tables(tables, colum_ground_truth):
     failed = []
     for table in tables:
         joined = pd.concat([joined, table], ignore_index=True)
+
     joined.drop_duplicates(inplace=True)
     joined.dropna(how='all', inplace=True)
     joined.reset_index(drop=True, inplace=True)
@@ -65,11 +66,18 @@ def process_table(table):
     return table
 
 def delete_temp(folder_name):
-    folder = pathlib.Path(folder_name)
-    for file in folder.iterdir():
-        os.unlink(os.path.join(folder_name, file.name))
-    shutil.rmtree(folder_name)
+    if os.path.isdir(folder_name):
+        folder = pathlib.Path(folder_name)
+        for file in folder.iterdir():
+            os.unlink(os.path.join(folder_name, file.name))
+        shutil.rmtree(folder_name)
 
+def zip_files(file_to_zip, zip_name=OUTPUT_FILE):
+    if not os.path.isfile(os.path.join(OUTPUT_FILE + ".zip")):
+        with zipfile.ZipFile(os.path.join(OUTPUT_FILE + ".zip"), 'w') as zipf:
+            zipf.write(file_to_zip, arcname=CSV_FILE + ".csv")    
+    else:
+        print(f"File {OUTPUT_FILE}.zip already exists.")    
 
 if __name__ == "__main__":
 
@@ -91,8 +99,11 @@ if __name__ == "__main__":
     #processa as informações
     processed = process_table(joined)
 
-    processed.to_csv(os.path.join(OUTPUT_DIR, CSV_FILE + ".csv"), index=False)
-    with zipfile.ZipFile(os.path.join(OUTPUT_FILE + ".zip"), 'w') as zipf:
-        zipf.write(os.path.join(OUTPUT_DIR, CSV_FILE + ".csv"), arcname=CSV_FILE + ".csv")        
+    if not os.path.isfile(os.path.join(OUTPUT_DIR, CSV_FILE + ".csv")):
+        processed.to_csv(os.path.join(OUTPUT_DIR, CSV_FILE + ".csv"), index=False)
+    else:
+        print(f"File {CSV_FILE}.csv already exists.")
+    
+    zip_files(os.path.join(OUTPUT_DIR, CSV_FILE + ".csv"), OUTPUT_FILE)
         
     delete_temp(OUTPUT_DIR)
