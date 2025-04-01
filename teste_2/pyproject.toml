@@ -1,0 +1,22 @@
+[project]
+name = "teste-2"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "VictorECarvalho",email = "victorelitt@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas (>=2.2.3,<3.0.0)",
+    "tabula-py (>=2.10.0,<3.0.0)",
+    "pathlib (>=1.0.1,<2.0.0)",
+    "regex (>=2024.11.6,<2025.0.0)",
+    "jpype1 (>=1.5.2,<2.0.0)",
+    "numpy (>=2.2.4,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
