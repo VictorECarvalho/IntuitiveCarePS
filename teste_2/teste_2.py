@@ -10,7 +10,7 @@ import regex as re
 import pandas as pd
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
-ZIP_PATH = os.path.join(DIR_PATH, "teste_1.zip")
+ZIP_PATH = os.path.join("../teste_1", "teste_1.zip")
 OUTPUT_DIR = os.path.join(DIR_PATH, "temp")
 COLUMN_GROUND_TRUTH = ['PROCEDIMENTO', 'RN\r(alteração)', 'VIGÊNCIA', 'OD', 'AMB', 'HCO',
        'HSO', 'REF', 'PAC', 'DUT', 'SUBGRUPO', 'GRUPO', 'CAPÍTULO']
