@@ -29,9 +29,9 @@ def download_file(link, file_list, complement = ""):
         if response.status_code == 200:
             file_path = os.path.join(TEMP_DIR, os.path.basename(file))
             if not os.path.isfile(file_path):
-                with open(file_path, "wb") as file:
+                with open(file_path, "wb") as f:
                     print(f"Downloaded {file}")
-                    file.write(response.content)
+                    f.write(response.content)
             else:
                 print(f"File {file} already exists.")
         else:
