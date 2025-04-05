@@ -8,14 +8,12 @@ import pandas as pd
 import os
 import sys
 import pathlib
-sys.path.append(os.path.abspath("/home/victor/dev/ps/IntuitiveCarePS/teste_1"))
-from teste_1 import delete_temp
 
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 LINK = ["https://dadosabertos.ans.gov.br/FTP/PDA/demonstracoes_contabeis/", "https://dadosabertos.ans.gov.br/FTP/PDA/operadoras_de_plano_de_saude_ativas/"]
 TEMP_DIR = os.path.join(DIR_PATH, "temp")
-
+#caminho para o diretorio de arquivo privado do db
 DB_FILE_DIR = "/var/lib/mysql-files/"
 
 def scrape(link):

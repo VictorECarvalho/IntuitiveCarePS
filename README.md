@@ -12,4 +12,4 @@ python3 teste_x.py
 com exceção do servidor frontend que pode ser executado com 
 npm run serve
 
-ou utilizar os a.sh encontrados dentro das pastas
+ou utilizar os a.sh encontrados dentro das pastas com excessao do algoritmo sql

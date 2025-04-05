@@ -8,8 +8,8 @@
           <hr><br>
           <button type="button" class="btn btn-success btn-bg" v-b-modal.filtro-modal>Buscar</button>
           <br><br>
-          <a class="text-center" v-if="filtro.col != '' && filtro.val != ''">
-            Filtro: {{ filtro.col }} = {{ filtro.val }}
+          <a class="text-center">
+            Filtro: {{ filtro.col }} - {{ filtro.val }}
           </a>
           <br><br>
           <div class="scrollable text-center green flex-grow-1 flex-shrink-0 overflow-x-scroll overflow-y-scroll" style="width: 100%; height:700px;">
@@ -76,7 +76,7 @@
             placeholder="Digite o valor">
           </b-form-input>
         </b-form-group>
-        <b-button type="clear" variant="primary">Buscar</b-button>
+        <b-button type="clear" variant="primary">Limpar</b-button>
         </b-form>
       </b-modal>
   </div>

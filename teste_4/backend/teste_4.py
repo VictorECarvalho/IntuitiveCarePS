@@ -25,11 +25,15 @@ def get_data():
                 
     except Exception as e:
         return str(e)
-
-@app.route('/get_data', methods=['GET'])
-def get_data():
+    
+@app.route('/get_relevant', methods=['GET'])
+def get_relevant():
     try:
+        #Registro_ANS;CNPJ;Razao_Social;Nome_Fantasia;Modalidade;Logradouro;Numero;Complemento;Bairro;Cidade;UF;CEP;DDD;Telefone;Fax;Endereco_eletronico;Representante;Cargo_Representante;Regiao_de_Comercializacao;Data_Registro_ANS
+
         df = pd.read_csv(CSV_PATH, sep=';')
+        df = df[['CNPJ', 'Razao_Social', 'Nome_Fantasia', 'Modalidade', 'Logradouro','Cidade', 'UF', 'CEP', 'Telefone']]
+        df = df[df['Razao_Social'].notna()]
         return json.dumps({
             'status': 'success',
             'data': json.loads(df.to_json(orient='records')),
@@ -39,7 +43,6 @@ def get_data():
                 
     except Exception as e:
         return str(e)
-    
 
 if __name__ == '__main__':
     app.run(debug=True)
